@@ -13,7 +13,9 @@ const Game = ({
     wrongLetters, 
     guesses, 
     score,
-    checkWordGuess
+    checkWordGuess,
+    skipWord,
+    timeLeft
 }) => {
     const [letter, setLetter] = useState("");
     const [wordGuess, setWordGuess] = useState("");
@@ -82,9 +84,14 @@ const Game = ({
 
             {/* Conteúdo principal */}
             <div className='game-main-content'>
-                <p className='points'>
-                    <span>Pontuação: {score}</span>
-                </p>
+                <div className='game-info'>
+                    <p className='points'>
+                        <span>Pontuação: {score}</span>
+                    </p>
+                    <p className={`timer ${timeLeft <= 10 ? 'timer-warning' : ''}`}>
+                        <span>⏰ Tempo: {timeLeft}s</span>
+                    </p>
+                </div>
                 <h1>Adivinhe a palavra:</h1>
                 <h3 className='tip'>
                     Dica: <span>{pickedCategory}</span>
@@ -127,6 +134,9 @@ const Game = ({
                         <div className='wordGuessButton'>
                             <button onClick={showWordGuessInput} className='try-word-button'>
                                 🎯 Tentar Palavra Completa
+                            </button>
+                            <button onClick={skipWord} className='skip-word-button'>
+                                ⏭️ Pular Palavra (-50 pontos)
                             </button>
                         </div>
                     </div>

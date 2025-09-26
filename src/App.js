@@ -27,10 +27,41 @@ function App() {
   const [wrongLetters, setWrongLetters] = useState([]);
   const [guesses, setGuesses] = useState(6);
   const [score, setScore] = useState(0);
+  
+  const [timeLeft, setTimeLeft] = useState(60); // 60 segundos por palavra
+  const [timerId, setTimerId] = useState(null);
 
   const normalizeString = (str) => {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   };
+
+  const startTimer = useCallback(() => {
+    if (timerId) {
+      clearInterval(timerId);
+    }
+    
+    setTimeLeft(60); 
+    
+    const newTimerId = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(newTimerId);
+          setGameStage(stages[2].name);
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+    
+    setTimerId(newTimerId);
+  }, [timerId]);
+
+  const stopTimer = useCallback(() => {
+    if (timerId) {
+      clearInterval(timerId);
+      setTimerId(null);
+    }
+  }, [timerId]);
 
 
 
@@ -68,8 +99,10 @@ function App() {
     setLetters(wordLetters);
     setNormalizedLetters(normalizedWordLetters);
 
-    setGameStage(stages[1].name)
-  }, [pickedWordAndCategory]);
+    setGameStage(stages[1].name);
+    
+    startTimer();
+  }, [pickedWordAndCategory, startTimer]);
 
   const verifyLetter = (letter) => {
     const normalizedLetter = normalizeString(letter.toLowerCase());
@@ -109,6 +142,7 @@ function App() {
     const isCorrect = normalizedGuess === normalizedPickedWord;
     
     if (isCorrect) {
+      stopTimer();
       setScore((actualScore) => actualScore + 50);
       
       setTimeout(() => {
@@ -126,34 +160,48 @@ function App() {
     const isCorrect = normalizedGuess === normalizedPickedWord;
     
     if (isCorrect) {
+      stopTimer();
       setScore((actualScore) => actualScore + 125);
       
       setTimeout(() => {
         startGame();
       }, 2000);
+    } else {
+      setScore((actualScore) => actualScore - 30);
     }
     
     return isCorrect;
   };
 
+  const skipWord = () => {
+    stopTimer(); 
+    setScore((actualScore) => actualScore - 50);
+    
+    setTimeout(() => {
+      startGame();
+    }, 1000);
+  };
+
   useEffect(() => {
     if (guesses <= 0) {
-
+      stopTimer();
       clearLetterStates();
 
       setGameStage(stages[2].name);
     }
-  }, [guesses]);
+  }, [guesses, stopTimer]);
 
   useEffect(() => {
-    const uniqueLetters = [...new Set(letters)];
+    const realLetters = letters.filter(letter => letter !== ' ' && letter !== '-');
+    const uniqueLetters = [...new Set(realLetters)];
 
-    if(guessedLetters.length === uniqueLetters.length) {
+    if(guessedLetters.length === uniqueLetters.length && uniqueLetters.length > 0) {
+      stopTimer();
       setScore((actualScore) => (actualScore += 100))
       startGame();
     }
 
-  }, [guessedLetters, letters, startGame]);
+  }, [guessedLetters, letters, startGame, stopTimer]);
 
   const retry = () => {
     setScore(0);
@@ -177,6 +225,8 @@ function App() {
         guesses={guesses}
         score={score}
         checkWordGuess={checkWordGuess}
+        skipWord={skipWord}
+        timeLeft={timeLeft}
         />
       )}
       {gameStage === 'end' && (
