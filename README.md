@@ -1,70 +1,144 @@
-# Getting Started with Create React App
+# 🎮 BrincaLetra
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Um jogo de adivinhação de palavras interativo desenvolvido em React!**
 
-## Available Scripts
+![React](https://img.shields.io/badge/React-19.1.1-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-In the project directory, you can run:
+## 📖 Sobre o Projeto
 
-### `npm start`
+BrincaLetra é um jogo de palavras inspirado no clássico "Jogo da Forca", mas com uma abordagem moderna. O objetivo é descobrir palavras secretas de diferentes categorias, seja adivinhando letra por letra ou tentando a palavra completa.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### ✨ Funcionalidades Principais
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 🎯 **Múltiplas Categorias**: Palavras de diferentes temas para variar a diversão
+- ⏱️ **Sistema de Timer**: 60 segundos por palavra com aviso visual nos últimos 10 segundos
+- 🏆 **Sistema de Pontuação Dinâmico**: 
+  - +10 pontos por letra correta
+  - +125 pontos por palavra completa
+  - -30 pontos por tentativa de palavra incorreta
+  - -50 pontos por pular palavra
+- ⏭️ **Opção de Pular Palavra**: Com penalidade
+- 📱 **Design Responsivo**: Funciona perfeitamente em desktop e mobile
+- 🎨 **Interface Moderna**: Design limpo e intuitivo
+- 🔄 **Troca Automática**: Sistema inteligente que detecta quando a palavra foi descoberta
 
-### `npm test`
+## 🎮 Como Jogar
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Objetivo
+Descubra a palavra secreta antes que o tempo acabe ou suas tentativas se esgotem!
 
-### `npm run build`
+### Regras do Jogo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Leia a Categoria**: A dica é o tema das palavras
+2. **Adivinhe as Letras**: Digite letras para descobrir a palavra
+3. **Ou Tente a Palavra Completa**: Se souber a resposta, digite a palavra inteira
+4. **Gerencie seu Tempo**: Você tem 60 segundos por palavra
+5. **Use a Opção de Pular**: Se estiver em dificuldades (com penalidade)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Sistema de Pontuação
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Ação | Pontos |
+|------|--------|
+| ✅ Letra correta | +10 |
+| ✅ Palavra completa correta | +125 |
+| ❌ Tentativa de palavra incorreta | -30 |
+| ⏭️ Pular palavra | -50 |
+| ⏰ Tempo esgotado | Game Over |
 
-### `npm run eject`
+### Condições de Game Over
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- ❌ Errar 6 tentativas de letras
+- ⏰ Tempo de 60 segundos esgotar
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🚀 Tecnologias Utilizadas
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **React 19.1.1**: Framework principal para construção da interface
+- **JavaScript ES6+**: Lógica do jogo e interatividade
+- **CSS3**: Estilização moderna com gradientes, animações e responsividade
+- **React Hooks**: useState, useEffect, useCallback para gerenciamento de estado
+- **Create React App**: Configuração e build do projeto
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📦 Instalação e Execução
 
-## Learn More
+### Pré-requisitos
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Node.js (versão 14 ou superior)
+- npm ou yarn
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Passos para Instalação
 
-### Code Splitting
+1. **Clone o repositório**
+   ```bash
+   git clone [url-do-repositorio]
+   cd brincaletra
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. **Instale as dependências**
+   ```bash
+   npm install
+   ```
 
-### Analyzing the Bundle Size
+3. **Execute o projeto**
+   ```bash
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+4. **Acesse no navegador**
+   ```
+   http://localhost:3000
+   ```
 
-### Making a Progressive Web App
+### Scripts Disponíveis
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `npm start`: Executa o app em modo de desenvolvimento
+- `npm test`: Executa os testes
+- `npm run build`: Cria build de produção
+- `npm run eject`: Ejeta as configurações (irreversível)
 
-### Advanced Configuration
+## 🏗️ Estrutura do Projeto
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+src/
+├── components/         # Componentes React
+│   ├── Game.js         # Componente principal do jogo
+│   ├── Game.css        # Estilos do jogo
+│   ├── StartScreen.js  # Tela inicial
+│   ├── StartScreen.css # Estilos da tela inicial
+│   ├── GameOver.js     # Tela de game over
+│   └── GameOver.css    # Estilos do game over
+├── data/
+│   └── words.js        # Base de dados das palavras
+├── App.js              # Componente raiz
+├── App.css             # Estilos globais
+└── index.js            # Ponto de entrada
+```
 
-### Deployment
+## 🎨 Características Técnicas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Funcionalidades Implementadas
 
-### `npm run build` fails to minify
+- **Timer Inteligente**: Sistema de cronômetro que para automaticamente quando necessário
+- **Normalização de Strings**: Tratamento de acentos e caracteres especiais
+- **Detecção Automática de Vitória**: Reconhece quando todas as letras foram descobertas
+- **Interface Responsiva**: Adaptação automática para diferentes tamanhos de tela
+- **Feedback Visual**: Animações e cores para melhor experiência do usuário
+- **Gerenciamento de Estado**: Uso eficiente dos React Hooks
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Melhorias Futuras Possíveis
+
+- 🔊 Efeitos sonoros
+- 🏆 Sistema de ranking/recordes
+- 🌐 Multiplayer online
+- 📊 Estatísticas detalhadas
+- 🎨 Temas personalizáveis
+- 📱 App mobile nativo
+
+## 👨‍💻 Desenvolvedor
+
+Desenvolvido com ❤️ usando React e muito café ☕
+
+---
+
+**Divirta-se jogando BrincaLetra! 🎉**
