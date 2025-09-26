@@ -1,4 +1,182 @@
-h2 span {
-    color: #ecfa00;
-    font-size: 1.5em;
+.gameover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2em;
+    position: relative;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+.gameover-content {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 3em;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: calc(100% - 4em);
+    position: relative;
+    z-index: 10;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+.gameover h1 {
+    font-size: 3.5em;
+    color: #ecf0f1;
+    margin-bottom: 1em;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+    font-weight: 800;
+}
+.high-score-message {
+    margin: 2em 0;
+}
+.celebration {
+    font-size: 2.5em;
+    color: #f1c40f;
+    margin-bottom: 0.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: bounce 1s infinite alternate;
+}
+.achievement {
+    font-size: 1.4em;
+    color: #27ae60;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+.regular-message h2 {
+    font-size: 1.8em;
+    color: #e74c3c;
+    margin-bottom: 1em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.score-display {
+    margin: 2em 0;
+    padding: 1.5em;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(41, 128, 185, 0.1));
+    border-radius: 15px;
+    border: 2px solid #3498db;
+}
+
+.score-display h3 {
+    font-size: 1.6em;
+    color: #ecf0f1;
+    margin: 0;
+}
+.score-number {
+    color: #f1c40f;
+    font-size: 1.8em;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+.word-reveal {
+    margin: 2em 0;
+    padding: 1.5em;
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.2), rgba(192, 57, 43, 0.1));
+    border-radius: 15px;
+    border: 2px solid #e74c3c;
+}
+.word-reveal p {
+    font-size: 1.3em;
+    color: #ecf0f1;
+    margin-bottom: 1em;
+    font-weight: 600;
+}
+.revealed-word {
+    font-size: 2.5em;
+    color: #f1c40f;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+    padding: 0.5em;
+    background: linear-gradient(135deg, rgba(241, 196, 15, 0.2), rgba(243, 156, 18, 0.1));
+    border-radius: 10px;
+    border: 2px solid #f1c40f;
+}
+.play-again-btn {
+    background: linear-gradient(135deg, #27ae60, #229954);
+    color: #fff;
+    padding: 10px 35px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1.4em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2em;
+}
+
+.play-again-btn:hover {
+    background: linear-gradient(135deg, #229954, #1e8449);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.6);
+}
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    animation: confetti-fall 3s linear infinite;
+}
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+@media (max-width: 768px) {
+    .gameover-content {
+        padding: 2em;
+        margin: 1em;
+    }
+    
+    .gameover h1 {
+        font-size: 2.5em;
+    }
+    
+    .celebration {
+        font-size: 2em;
+    }
+    
+    .revealed-word {
+        font-size: 2em;
+        letter-spacing: 2px;
+    }
+    
+    .play-again-btn {
+        padding: 15px 25px;
+        font-size: 1.2em;
+    }
 }

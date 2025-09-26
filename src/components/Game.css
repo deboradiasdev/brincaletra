@@ -1,17 +1,47 @@
-.game h1 {
-    font-size: 2.5em;
+h1 {
+    font-size: 2.8em;
+    color: #ecf0f1;
+    margin-bottom: 1.5em;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-weight: 700;
 }
-.points span {
+.points {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: #fff;
+    padding: 18px 25px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
     font-weight: bold;
+    font-size: 1.3em;
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+.tip {
+    margin-bottom: 2.5em;
+    font-size: 1.2em;
+    text-align: center;
 }
 .tip span {
-    color: #ecfa00;
+    font-weight: bold;
+    background: #ecfa00;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.1em;
 }
 .wordContainer {
     margin: 1.5em;
     padding: 1.5em;
     border: 20px solid #ecfa00;
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 60px;
+    align-items: center;
 }
 .letter, .blankSquare {
     font-size: 70px;
@@ -20,22 +50,338 @@
     height: 100px;
     width: 100px;
     text-transform: uppercase;
-    background-color: #FFFFFF;
-    color: #000000;
+    background-color: #fff;
+    color: #000;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spaceSquare {
+    font-size: 70px;
+    line-height: 1.5;
+    border: 3px solid #000;
+    height: 100px;
+    width: 100px;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.game {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
+}
+.game-main-content {
+    flex: 1;
+    margin-right: 280px;
+}
+.gameControls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin: 2.5em 0;
+    padding: 25px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+.letterContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 .letterContainer p {
-    margin-bottom: 1.2em;
+    margin-bottom: 1em;
+    color: #ecf0f1;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 .letterContainer form {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 15px;
 }
 .letterContainer input {
-    height: 50px;
-    width: 50px;
-    font-size: 2em;
+    height: 60px;
+    width: 60px;
+    font-size: 2.2em;
     text-align: center;
-    margin-right: 1em;
+    text-transform: uppercase;
+    border: 3px solid #3498db;
+    border-radius: 12px;
+    font-weight: bold;
+    background: #fff;
+    color: #2c3e50;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.2);
+    transition: all 0.3s ease;
+}
+.letterContainer input:focus {
+    outline: none;
+    border-color: #1e83c7;
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.4);
+    transform: scale(1.05);
+}
+.letterContainer button {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.letterContainer button:hover {
+    background: linear-gradient(135deg, #2980b9, #1f5f8b);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(52, 152, 219, 0.4);
+}
+.letterContainer button:active {
+    transform: translateY(0);
+}
+.wordGuessButton {
+    margin-top: 15px;
+}
+.try-word-button {
+    background: linear-gradient(180deg, rgb(19, 44, 183) 0%, rgb(10, 17, 113) 100%);
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(7, 1, 35, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+.try-word-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+.try-word-button:hover::before {
+    left: 100%;
+}
+.try-word-button:hover {
+    transform: translateY(-3px);
+}
+.wordGuessContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 2em 0;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.05));
+    border-radius: 20px;
+    border: 2px solid #e74c3c;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.2);
+}
+.wordGuessContainer p {
+    color: #ecf0f1;
+    font-size: 1.3em;
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+.word-guess-input {
+    height: 60px;
+    width: 350px;
+    font-size: 1.4em;
+    text-align: center;
+    padding: 15px;
+    border: 3px solid #e74c3c;
+    border-radius: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #fff;
+    color: #2c3e50;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.2);
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+}
+.word-guess-input:focus {
+    outline: none;
+    border-color: #27ae60;
+    box-shadow: 0 0 20px rgba(39, 174, 96, 0.4);
+    transform: scale(1.02);
+}
+.word-guess-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+}
+.word-guess-buttons button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.word-guess-buttons button[type="submit"] {
+    background: linear-gradient(135deg, #27ae60, #229954);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+.word-guess-buttons button[type="submit"]:hover {
+    background: linear-gradient(135deg, #229954, #1e8449);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(39, 174, 96, 0.4);
+}
+.cancel-button {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(149, 165, 166, 0.3);
+}
+.cancel-button:hover {
+    background: linear-gradient(135deg, #7f8c8d, #6c7b7d);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(149, 165, 166, 0.4);
+}
+.word-result-container {
+    margin: 2em 0;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease-out;
+}
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.correct-word-result {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.2), rgba(34, 153, 84, 0.1));
+    border: 3px solid #27ae60;
+    color: #27ae60;
+}
+.correct-word-result h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.8em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+.correct-word-result p {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+.wrong-word-result {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.2), rgba(192, 57, 43, 0.1));
+    border: 3px solid #e74c3c;
+    color: #e74c3c;
+}
+.wrong-word-result h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.6em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+.wrong-word-result p {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+.wrongLettersContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 240px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), rgba(192, 57, 43, 0.1));
+    border-radius: 15px;
+    border: 2px solid rgba(231, 76, 60, 0.3);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+.wrongLettersContainer p {
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #ecf0f1;
+    font-size: 1.1em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    text-align: center;
+    border-bottom: 2px solid rgba(231, 76, 60, 0.3);
+    padding-bottom: 10px;
+}
+.wrongLettersContainer .letters-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+.wrongLettersContainer span {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    text-transform: uppercase;
+    box-shadow: 0 3px 8px rgba(231, 76, 60, 0.4);
+    transition: all 0.3s ease;
+    min-width: 35px;
+    text-align: center;
+}
+.wrongLettersContainer span:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 12px rgba(231, 76, 60, 0.6);
+}
+@media (max-width: 1200px) {
+    .game-main-content {
+        margin-right: 0;
+    }
+    
+    .wrongLettersContainer {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        max-width: 600px;
+        margin: 2em auto 0;
+        max-height: none;
+    }
+    
+    .wrongLettersContainer .letters-grid {
+        justify-content: flex-start;
+    }
 }
