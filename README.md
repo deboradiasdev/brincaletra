@@ -71,7 +71,7 @@ Descubra a palavra secreta antes que o tempo acabe ou suas tentativas se esgotem
 
 1. **Clone o repositório**
    ```bash
-   git clone [url-do-repositorio]
+   git clone https://github.com/deboradiasdev/brincaletra.git
    cd brincaletra
    ```
 
